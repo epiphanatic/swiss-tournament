@@ -18,9 +18,6 @@ def deleteMatches():
     c.execute(
         "DELETE FROM matches"
     )
-    c.execute(
-        "UPDATE players SET wins = 0, matches = 0"
-    )
     conn.commit()
     conn.close()
 
@@ -85,7 +82,7 @@ def playerStandings():
     conn = connect()
     c = conn.cursor()
     c.execute(
-        "SELECT id, name, wins, matches FROM players ORDER BY wins DESC"
+        "SELECT * FROM standings ORDER BY wins DESC"
     )
     results = c.fetchall()
     conn.close()
@@ -107,14 +104,6 @@ def reportMatch(winner, loser):
     c = conn.cursor()
     c.execute(
         "INSERT INTO matches (winner, loser) VALUES (%s, %s)", (winner, loser,)
-    )
-    c.execute(
-        "UPDATE players SET wins = wins + 1, matches = matches + 1 "
-        "WHERE id=%s", (winner,)
-    )
-    c.execute(
-        "UPDATE players SET matches = matches + 1 "
-        "WHERE id=%s", (loser,)
     )
     conn.commit()
     conn.close()

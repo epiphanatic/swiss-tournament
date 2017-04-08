@@ -6,9 +6,7 @@ CREATE DATABASE tournament;
 \c tournament;
 CREATE TABLE players (
   id SERIAL PRIMARY KEY,
-  name varchar(50) UNIQUE NOT NULL,
-  wins INTEGER DEFAULT 0,
-  matches INTEGER DEFAULT 0,
+  name varchar(50) NOT NULL,
   dateCreated TIMESTAMP DEFAULT current_timestamp
 );
 CREATE TABLE matches (
