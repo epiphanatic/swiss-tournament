@@ -100,6 +100,9 @@ def reportMatch(winner, loser):
       loser:  the id number of the player who lost
     """
 
+    # passing values in parentheses with an ending comma protects against
+    #   injection attacks
+
     conn = connect()
     c = conn.cursor()
     c.execute(
